@@ -29,11 +29,6 @@
 
         <dependency>
             <groupId>com.alipay.sofa</groupId>
-            <artifactId>web-ark-plugin</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alipay.sofa</groupId>
             <artifactId>runtime-sofa-boot-plugin</artifactId>
         </dependency>
 
@@ -67,7 +62,6 @@
                 <configuration>
                     <outputDirectory>../target</outputDirectory>
                     <baseDir>../</baseDir>
-                    <webContextPath>/master</webContextPath>
                 </configuration>
             </plugin>
         </plugins>
