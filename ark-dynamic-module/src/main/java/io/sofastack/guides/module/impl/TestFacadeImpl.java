@@ -5,7 +5,7 @@ import io.sofastack.guides.facade.TestFacade;
 import org.springframework.stereotype.Service;
 
 /**
- * @author: guolei.sgl (guolei.sgl@antfin.com) 2020/6/13 2:30 PM
+ * @author: guolei.sgl (glmapper_2018@163.com) 2020/6/13 2:30 PM
  * @since:
  **/
 @SofaService
