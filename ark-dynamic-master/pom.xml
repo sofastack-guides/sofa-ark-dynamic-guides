@@ -43,6 +43,13 @@
             <artifactId>healthcheck-sofa-boot-starter</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>io.sofastack.guides</groupId>
+            <artifactId>ark-dynamic-module</artifactId>
+            <version>1.0.0</version>
+            <classifier>ark-biz</classifier>
+        </dependency>
+
     </dependencies>
 
     <build>

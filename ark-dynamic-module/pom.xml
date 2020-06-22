@@ -46,7 +46,8 @@
                             <outputDirectory>../target</outputDirectory>
                             <!--设置应用的根目录，用于读取 ${base.dir}/conf/ark/bootstrap.application 配置文件，默认为 ${project.basedir}-->
                             <baseDir>../</baseDir>
-                            <skipArkExecutable>true</skipArkExecutable>
+                            <attach>true</attach>
+                            <bizClassifier>ark-biz</bizClassifier>
                         </configuration>
                     </execution>
                 </executions>
