@@ -1,5 +1,5 @@
-/target/*
 target
+bin
 bak
 .pmd
 .project
@@ -12,9 +12,11 @@ bak
 *.iml
 *.ipr
 *.iws
+bak
 null/
 tree.log
 tmp/
-*.log
-*.DS_Store
-logs/
+velocity.log
+.DS_Store
+deploy.sh
+logs
