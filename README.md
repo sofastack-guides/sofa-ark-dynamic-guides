@@ -1,5 +1,3 @@
-# SOFAChannel#11 一个例子展示 SOFAArk
-
 ## 实验内容
 
 通过 [SOFAArk](https://github.com/sofastack/sofa-ark) 提供的动态模块能力，实现商品列表排序策略的动态变更。通过在不重启宿主机，不更改应用配置的情况下实现应用行为的改变。
