@@ -15,6 +15,10 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>healthcheck-sofa-boot-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -33,72 +37,47 @@
         <!-- 这里添加动态模块相关依赖 -->
         <dependency>
             <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofa-ark-springboot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>sofa-ark-all</artifactId>
-                    <groupId>com.alipay.sofa</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>sofa-ark-spi</artifactId>
-                    <groupId>com.alipay.sofa</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>sofa-ark-exception</artifactId>
-                    <groupId>com.alipay.sofa</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>sofa-ark-common</artifactId>
-                    <groupId>com.alipay.sofa</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>sofa-ark-api</artifactId>
-                    <groupId>com.alipay.sofa</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>sofa-ark-compatible-springboot1</artifactId>
-                    <groupId>com.alipay.sofa</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.alipay.sofa</groupId>
             <artifactId>sofa-ark-all</artifactId>
             <version>${sofa.ark.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
+                    <artifactId>logback-core</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-core</artifactId>
+                    <artifactId>logback-classic</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofa-ark-api</artifactId>
+            <artifactId>sofa-ark-compatible-springboot2</artifactId>
+            <version>${sofa.ark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>sofa-ark-springboot-starter</artifactId>
             <version>${sofa.ark.version}</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>logback-classic</artifactId>
-                    <groupId>ch.qos.logback</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>logback-core</artifactId>
-                    <groupId>ch.qos.logback</groupId>
+                    <groupId>com.alipay.sofa</groupId>
+                    <artifactId>sofa-ark-compatible-springboot1</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.alipay.sofa</groupId>-->
-<!--            <artifactId>web-ark-plugin</artifactId>-->
-<!--        </dependency>-->
+
+        <!-- start to add sofa-ark-plugin -->
         <dependency>
             <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofaboot-ark-plugin</artifactId>
+            <artifactId>web-ark-plugin</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>runtime-sofa-boot-plugin</artifactId>
+        </dependency>
+        <!-- end to add sofa-ark-plugin -->
+
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>hessian</artifactId>

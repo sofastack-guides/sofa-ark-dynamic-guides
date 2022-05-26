@@ -164,6 +164,7 @@ Start to process switch command now, pls wait and check.
 ```
 
 切换完模块后，访问 http://localhost:8080 ，现在展示的是列表编程按照销量进行排序，如下所示：
+如果要访问模块中的rest请求，请带上模块 sofa-ark-maven-plugin 里定义的webContextPath
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_c69e1f/afts/img/A*vqEJQ4775u4AAAAAAAAAAABkARQnAQ)
 

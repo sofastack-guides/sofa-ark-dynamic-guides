@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @since:
  **/
 @RestController
+// please add biz webContextPath which defined in sofa-ark-maven-plugin ahead of this
+// for example: this can be accessed by 'provider/api/module'
 @RequestMapping("api")
 public class ModuleController {
     @RequestMapping("module")
