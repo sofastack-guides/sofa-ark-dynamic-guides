@@ -133,10 +133,10 @@ public class StrategyServiceImpl implements StrategyService {
 <version>2.0.0</version>
 ```
 
-最后，由于本Demo未引入web-ark-plugin，所以每个模块会启动一个新的tomcat实例，所以需要更改tomcat端口
-```properties
-server.port=8802
-```
+[//]: # (最后，由于本Demo未引入web-ark-plugin，所以每个模块会启动一个新的tomcat实例，所以需要更改tomcat端口)
+[//]: # (```properties)
+[//]: # (server.port=8802)
+[//]: # (```)
 
 配置完成之后，执行 mvn clean package 进行打包，此时可以打包出新版本 dynamic-provider ark biz包，如下图所示：
 ![pic](https://gw.alipayobjects.com/mdn/rms_c69e1f/afts/img/A*lWUSQb95azoAAAAAAAAAAABkARQnAQ)
