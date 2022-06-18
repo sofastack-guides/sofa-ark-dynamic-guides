@@ -55,7 +55,6 @@
                     <outputDirectory>./target</outputDirectory>
                     <bizName>dynamic-provider</bizName>
                     <webContextPath>provider</webContextPath>
-                    <declaredMode>true</declaredMode>
                 </configuration>
             </plugin>
         </plugins>

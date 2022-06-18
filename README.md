@@ -91,19 +91,34 @@ git clone git@github.com:sofastack-guides/sofa-ark-dynamic-guides.git
 
 ### 4、打包 & 启动宿主应用
 
-#### 执行 mvn clean package
-
-配置完成之后，执行 mvn clean package 进行打包，此时 dynamic-provider 会被打包成动态模块包，如下图所示：
-
-![image.png](https://gw.alipayobjects.com/mdn/rms_c69e1f/afts/img/A*fbgOSpPdAIkAAAAAAAAAAABkARQnAQ)
-
-
 #### 启动宿主应用
 SOFAArk 2.0之后宿主应用可以直接启动，可以在IDE里增加`-Dsofa.ark.embed.enable=true` 启动参数，直接启动 StockMngApplication 类。
 
 启动成功之后日志信息如下：
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*3N_nS6P223IAAAAAAAAAAABkARQnAQ)
+
+### 5、 引入默认的排序策略模块
+dynamic-provider 提供的 io.sofastack.dynamic.facade.StrategyService 实现类返回了默认排序。
+
+执行 mvn clean package 进行打包，此时可以打包出新版本 dynamic-provider ark biz包，如下图所示：
+![image.png](https://gw.alipayobjects.com/mdn/rms_c69e1f/afts/img/A*fbgOSpPdAIkAAAAAAAAAAABkARQnAQ)
+
+telnet 连接 SOFAArk，安装默认版本 dynamic-provider:
+```bash
+## 连接 SOFAArk telnet
+> telnet localhost 1234
+
+## 安装新版本 dynamic-provider
+sofa-ark>biz -i file:///Users/sample/sofachannel-demo/dynamic-provider/target/dynamic-provider-1.0.0-ark-biz.jar
+Start to process install command now, pls wait and check.
+
+## 查看安装的模块信息
+sofa-ark>biz -a
+stock-mng:1.0.0:activated
+dynamic-provider:1.0.0:activated
+biz count = 2
+```
 
 访问 http://localhost:8080 ，现在展示的是默认的排列顺序，如下所示：
 
@@ -133,10 +148,15 @@ public class StrategyServiceImpl implements StrategyService {
 <version>2.0.0</version>
 ```
 
-[//]: # (最后，由于本Demo未引入web-ark-plugin，所以每个模块会启动一个新的tomcat实例，所以需要更改tomcat端口)
-[//]: # (```properties)
-[//]: # (server.port=8802)
-[//]: # (```)
+最后，由于本Demo引入web-ark-plugin，所以每个模块会复用同一个tomcat实例，所以需要更改server的webContextPath，搜索并修改dynamic-provider的pom由原来的
+
+```xml
+<webContextPath>provider</webContextPath>
+```
+换成一个不同的webContextPath
+```xml
+<webContextPath>provider-1</webContextPath>
+```
 
 配置完成之后，执行 mvn clean package 进行打包，此时可以打包出新版本 dynamic-provider ark biz包，如下图所示：
 ![pic](https://gw.alipayobjects.com/mdn/rms_c69e1f/afts/img/A*lWUSQb95azoAAAAAAAAAAABkARQnAQ)
