@@ -124,7 +124,7 @@ biz count = 2
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_c69e1f/afts/img/A*HpKuR7Wn44UAAAAAAAAAAABkARQnAQ)
 
-### 5、新建按照销量排序策略模块
+### 6、新建按照销量排序策略模块
 dynamic-provider 提供的 io.sofastack.dynamic.facade.StrategyService 实现类返回了默认排序，现在我们要开发一个新版本模块，这个新版本模块会按照销量高低返回商品列表。
 
 首先，修改 io.sofastack.dynamic.provider.impl.StrategyServiceImpl 实现类如下：
