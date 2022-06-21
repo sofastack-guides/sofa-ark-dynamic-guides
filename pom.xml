@@ -24,7 +24,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<sofa.ark.version>2.0.1-SNAPSHOT</sofa.ark.version>
+		<sofa.ark.version>2.0.1</sofa.ark.version>
 		<curator.version>2.9.1</curator.version>
 		<mybatis.version>1.3.2</mybatis.version>
 		<mysql.version>5.1.46</mysql.version>
