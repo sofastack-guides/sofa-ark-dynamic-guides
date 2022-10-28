@@ -1,10 +1,12 @@
 ## 实验内容
+- 动态部署
+  
+  通过 [SOFAArk](https://github.com/sofastack/sofa-ark) 提供的动态模块能力，实现商品列表排序策略的动态变更。通过在不重启宿主机，不更改应用配置的情况下实现应用行为的改变。
 
-通过 [SOFAArk](https://github.com/sofastack/sofa-ark) 提供的动态模块能力，实现商品列表排序策略的动态变更。通过在不重启宿主机，不更改应用配置的情况下实现应用行为的改变。
+- 静态合并部署
 
-## 任务
-
-### 1、任务准备
+  通过 [SOFAArk](https://github.com/sofastack/sofa-ark) 提供的静态合并部署能力（2.0.7版本及以上），宿主应用启动时，pom依赖里的 ark biz 模块会安装并启动，无需通过动态部署手动安装 ark biz 模块。
+## 前期准备
 
 从 github 上将 demo 工程克隆到本地
 
@@ -25,7 +27,8 @@ git clone git@github.com:sofastack-guides/sofa-ark-dynamic-guides.git
 * dynamic-provider 实现了 dynamic-facade 定义的接口，并将实现类发布成一个服务
 * dynamic-stock-mng 宿主应用，提供一个 web 页面，用于展示实验效果
 
-### 2、将 dynamic-provider 打包成 ark biz
+## 动态部署
+### 1、将 dynamic-provider 打包成 ark biz
 在 dynamic-provider/pom.xml 中，增加 ark 打包插件，该模块实现了宿主应用的一个接口，同时暴露一个rest服务，进行配置：
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_ff360b/afts/img/A*y2BvRKG14JUAAAAAAAAAAABkARQnAQ)
@@ -54,7 +57,7 @@ git clone git@github.com:sofastack-guides/sofa-ark-dynamic-guides.git
 </plugins>
 ```
 
-### 3、构建宿主应用
+### 2、构建宿主应用
 
 在已下载下来的工程中，dynamic-stock-mng 作为实验的宿主应用工程模型。通过此步骤，将 dynamic-stock-mng  构建成为动态模块的宿主应用。在SOFAArk2.0之后，宿主应用已经与普通应用并无差别，主要体现在下面会介绍到的宿主应用的打包方式、构建产物和启动方式。
 
@@ -89,7 +92,7 @@ git clone git@github.com:sofastack-guides/sofa-ark-dynamic-guides.git
         </plugins>
     ```
 
-### 4、打包 & 启动宿主应用
+### 3、打包 & 启动宿主应用
 
 #### 启动宿主应用
 SOFAArk 2.0之后宿主应用可以直接启动，可以在IDE里增加`-Dsofa.ark.embed.enable=true` 启动参数，直接启动 StockMngApplication 类。
@@ -98,7 +101,7 @@ SOFAArk 2.0之后宿主应用可以直接启动，可以在IDE里增加`-Dsofa.a
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*3N_nS6P223IAAAAAAAAAAABkARQnAQ)
 
-### 5、 引入默认的排序策略模块
+### 4、 引入默认的排序策略模块
 dynamic-provider 提供的 io.sofastack.dynamic.facade.StrategyService 实现类返回了默认排序。
 
 执行 mvn clean package 进行打包，此时可以打包出新版本 dynamic-provider ark biz包，如下图所示：
@@ -124,7 +127,7 @@ biz count = 2
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_c69e1f/afts/img/A*HpKuR7Wn44UAAAAAAAAAAABkARQnAQ)
 
-### 6、新建按照销量排序策略模块
+### 5、新建按照销量排序策略模块
 dynamic-provider 提供的 io.sofastack.dynamic.facade.StrategyService 实现类返回了默认排序，现在我们要开发一个新版本模块，这个新版本模块会按照销量高低返回商品列表。
 
 首先，修改 io.sofastack.dynamic.provider.impl.StrategyServiceImpl 实现类如下：
@@ -188,4 +191,93 @@ Start to process switch command now, pls wait and check.
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_c69e1f/afts/img/A*vqEJQ4775u4AAAAAAAAAAABkARQnAQ)
 
+## 静态合并部署
 
+静态合并部署，即：宿主应用启动时，pom 依赖中的 ark biz 模块会安装并启动，无需手动进行动态安装部署。静态合并部署和动态部署不是互斥的，在静态部署之后，也可以通过动态部署来升级 ark biz。在此次实验中，首先我们安装 ark biz 模块到本地 maven 仓库，接着把 ark biz 模块作为依赖引入到宿主应用中，最后启动宿主应用验证静态合并部署能力。
+
+### 1、安装 ark biz 到本地 maven 仓库
+我们安装 dynamic-provider 1.0.0 版本的 ark biz 到本地 maven 仓库。
+
+首先，为了统一实验流程，我们确认 dynamic-provider 版本为 1.0.0，webContextPath 为 provider:
+```bash
+<version>1.0.0</version>
+// ...
+<webContextPath>provider</webContextPath>
+```
+接着，修改 dynamic-provider 的打包配置，如下：
+```bash
+<plugin>
+                <groupId>com.alipay.sofa</groupId>
+                <artifactId>sofa-ark-maven-plugin</artifactId>
+                <!-- 版本需要 2.0.7 及以上-->
+                <version>2.0.7</version> 
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skipArkExecutable>true</skipArkExecutable>
+                    <!-- 将 ark biz 安装到仓库-->
+                    <attach>true</attach>
+                    <outputDirectory>./target</outputDirectory>
+                    <bizName>dynamic-provider</bizName>
+                    <webContextPath>provider</webContextPath>
+                    <declaredMode>true</declaredMode>
+                </configuration>
+            </plugin>
+```
+然后，在项目根目录下执行以下命令安装 ark biz 到本地 maven 仓库：
+```bash
+mvn clean install -pl dynamic-provider -am
+```
+最后，在本地 maven 仓库检查存在 ark biz：
+dynamic-provider-1.0.0-ark-biz.jar
+> 其路径大致如下 ..../io/sofastack/dynamic-provider/1.0.0/dynamic-provider-1.0.0-ark-biz.jar
+### 2、宿主应用引入 ark biz 依赖
+在 dynamic-stock-mng 中引入 dynamic-provider-1.0.0-ark-biz 依赖：
+```bash
+<dependency>
+    <groupId>io.sofastack</groupId>
+    <artifactId>dynamic-provider</artifactId>
+    <classifier>ark-biz</classifier>
+    <version>1.0.0</version>
+</dependency>
+```
+### 3、启动宿主应用并验证
+#### 3.1 本地打包启动验证
+首先，打包项目：
+```bash
+mvn clean package -DskipTests
+```
+然后，启动宿主应用 dynamic-stock-mng：
+```bash
+cd dynamic-stock-mng/target
+
+java -jar -Dsofa.ark.embed.enable=true -Dcom.alipay.sofa.ark.master.biz=dynamic-stock-mng dynamic-stock-mng-1.0.0-ark-biz.jar
+```
+启动成功后日志信息如下：
+
+最后，访问 http://localhost:8080 ，现在展示的是默认的排列顺序，如下所示：
+![image.png](https://gw.alipayobjects.com/mdn/rms_c69e1f/afts/img/A*HpKuR7Wn44UAAAAAAAAAAABkARQnAQ)
+
+#### 3.2 IDE 本地启动验证
+为了避免 IDE 读取本地编译的 dynamic-provider 和 dynamic-facade，需要将本项目中的 dynamic-provider 和 dynamic-facade 设置成其它版本，如 2.0.0。
+- dynamic-facade/pom.xml
+```bash
+<artifactId>dynamic-facade</artifactId>
+<version>2.0.0</version>
+```
+- dynamic-provider/pom.xml
+```bash
+<artifactId>dynamic-provider</artifactId>
+<version>2.0.0</version>
+```
+IDE**清除缓存**后，重启IDE。在IDE里增加-Dsofa.ark.embed.enable=true 启动参数，直接启动 StockMngApplication 类。
+启动成功后日志信息如下：
+
+访问 http://localhost:8080 ，现在展示的是默认的排列顺序，如下所示：
+![image.png](https://gw.alipayobjects.com/mdn/rms_c69e1f/afts/img/A*HpKuR7Wn44UAAAAAAAAAAABkARQnAQ)

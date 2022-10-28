@@ -82,6 +82,13 @@
             <groupId>com.alipay.sofa</groupId>
             <artifactId>hessian</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>io.sofastack</groupId>
+            <artifactId>dynamic-provider</artifactId>
+            <classifier>ark-biz</classifier>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
