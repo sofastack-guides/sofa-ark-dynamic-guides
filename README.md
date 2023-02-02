@@ -5,7 +5,7 @@
 
 - 静态合并部署
 
-  通过 [SOFAArk](https://github.com/sofastack/sofa-ark) 提供的静态合并部署能力（2.0.7版本及以上），宿主应用启动时，pom依赖里的 ark biz 模块会安装并启动，无需通过动态部署手动安装 ark biz 模块。
+  通过 [SOFAArk](https://github.com/sofastack/sofa-ark) 提供的静态合并部署能力（建议使用最新版本，如：2.1.0），宿主应用启动时，pom依赖里的 ark biz 模块会安装并启动，无需通过动态部署手动安装 ark biz 模块。
 ## 前期准备
 
 从 github 上将 demo 工程克隆到本地
@@ -209,8 +209,7 @@ Start to process switch command now, pls wait and check.
 <plugin>
                 <groupId>com.alipay.sofa</groupId>
                 <artifactId>sofa-ark-maven-plugin</artifactId>
-                <!-- 版本需要 2.0.7 及以上-->
-                <version>2.0.7</version> 
+                <version>2.1.0</version> 
                 <executions>
                     <execution>
                         <id>default-cli</id>
