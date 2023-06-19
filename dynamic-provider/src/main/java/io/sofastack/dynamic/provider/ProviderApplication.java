@@ -1,6 +1,5 @@
 package io.sofastack.dynamic.provider;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -16,7 +15,7 @@ import org.springframework.core.io.ResourceLoader;
 public class ProviderApplication {
     public static void main(String[] args) {
         SpringApplicationBuilder builder = new SpringApplicationBuilder(ProviderApplication.class);
-        ResourceLoader resourceLoader = new DefaultResourceLoader(Thread.currentThread().getContextClassLoader());
+        ResourceLoader resourceLoader = new DefaultResourceLoader(SpringApplicationBuilder.class.getClassLoader());
         builder.resourceLoader(resourceLoader);
         builder.build().run(args);
     }
