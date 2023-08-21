@@ -49,6 +49,8 @@ git clone git@github.com:sofastack-guides/sofa-ark-dynamic-guides.git
       <skipArkExecutable>true</skipArkExecutable>
       <outputDirectory>./target</outputDirectory>
       <bizName>dynamic-provider</bizName>
+      <webContextPath>provider</webContextPath>
+      <declaredMode>true</declaredMode>
     </configuration>
   </plugin>
 </plugins>
