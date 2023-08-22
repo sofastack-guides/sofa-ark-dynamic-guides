@@ -15,7 +15,7 @@ import org.springframework.core.io.ResourceLoader;
 public class ProviderApplication {
     public static void main(String[] args) {
         SpringApplicationBuilder builder = new SpringApplicationBuilder(ProviderApplication.class);
-        ResourceLoader resourceLoader = new DefaultResourceLoader(SpringApplicationBuilder.class.getClassLoader());
+        ResourceLoader resourceLoader = new DefaultResourceLoader(ProviderApplication.class.getClassLoader());
         builder.resourceLoader(resourceLoader);
         builder.build().run(args);
     }
