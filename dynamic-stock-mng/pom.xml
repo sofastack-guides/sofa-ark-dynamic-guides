@@ -82,6 +82,12 @@
             <groupId>com.alipay.sofa</groupId>
             <artifactId>hessian</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.alipay.sofa.serverless</groupId>
+            <artifactId>arklet-springboot-starter</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
