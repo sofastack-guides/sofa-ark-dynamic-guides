@@ -1,3 +1,7 @@
+# 该工程已经作为 [SOFAServerless](https://github.com/sofastack/sofa-serverless) 的部分 samples 工程，已经迁移到最新地址，请查看这里 [https://github.com/sofastack/sofa-serverless/tree/master/samples/sofaboot-samples](https://github.com/sofastack/sofa-serverless/tree/master/samples/sofaboot-samples)
+
+
+
 ## 实验内容
 
 通过 [SOFAArk](https://github.com/sofastack/sofa-ark) 提供的动态模块能力，实现商品列表排序策略的动态变更。通过在不重启宿主机，不更改应用配置的情况下实现应用行为的改变。
